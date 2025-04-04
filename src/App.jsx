@@ -24,7 +24,8 @@ import { fetchDataFromApi } from "./utils/api";
 import { useEffect } from "react";
 import Profile from "./Pages/Profile";
 import ProductDetails from "./Pages/Products/productDetails";
-import AddRAMS from "./Pages/Products/addRAMS.JSX";
+
+import addRAMS from "./Pages/Products/addRAMS";
 import AddWeight from "./Pages/Products/addWeight";
 import AddSize from "./Pages/Products/addSize";
 import BannerV1List from "./Pages/Banners/bannerV1List";
@@ -365,7 +366,7 @@ function App() {
                 className={`contentRight overflow-hidden py-4 px-5 ${isSidebarOpen === true && windowWidth < 992 && 'opacity-0'}  transition-all`}
                 style={{ width: isSidebarOpen === false ? "100%" : '80%' }}
               >
-                <AddRAMS />
+                <addRAMS />
               </div>
             </div>
           </section>
