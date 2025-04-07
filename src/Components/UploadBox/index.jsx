@@ -45,11 +45,17 @@ const UploadBox = (props) => {
             }
 
             uploadImages(apiEndPoint, formdata).then((res) => {
-                setUploading(false);
-                //props.setPreviews(res?.data?.images)
-               // setPreviews((prevItems) => [...prevItems, res?.data?.images]);
-                props.setPreviewsFun(res?.data?.images);
-            })
+                console.log("Upload Response:", res); // ✅ Check it
+            
+                if (res?.data?.images && Array.isArray(res.data.images)) {
+                    setUploading(false);
+                    props.setPreviewsFun(res.data.images);
+                } else {
+                    setUploading(false);
+                    context.alertBox("error", "Image array missing in response");
+                }
+            });
+            
 
         } catch (error) {
             console.log(error);
