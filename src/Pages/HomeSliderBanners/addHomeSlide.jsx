@@ -24,32 +24,24 @@ const AddHomeSlide = () => {
 
 
     const setPreviewsFun = (previewsArr) => {
-        const imgArr = previews;
-        for (let i = 0; i < previewsArr.length; i++) {
-            imgArr.push(previewsArr[i])
-        }
-
-        setPreviews([])
-        setTimeout(() => {
-            setPreviews(imgArr)
-            formFields.images = imgArr
-        }, 10);
-    }
+        const newPreviews = [...previews, ...previewsArr];
+        setPreviews(newPreviews);
+        setFormFields(prev => ({
+            ...prev,
+            images: newPreviews
+        }));
+    };
 
     const removeImg = (image, index) => {
-        var imageArr = [];
-        imageArr = previews;
-        deleteImages(`/api/homeSlides/deteleImage?img=${image}`).then((res) => {
-            imageArr.splice(index, 1);
-
-            setPreviews([]);
-            setTimeout(() => {
-                setPreviews(imageArr);
-                formFields.images = imageArr
-            }, 100);
-
-        })
-    }
+        deleteImages(`/api/homeSlides/deteleImage?img=${image}`).then(() => {
+            const updatedImages = previews.filter((_, i) => i !== index);
+            setPreviews(updatedImages);
+            setFormFields(prev => ({
+                ...prev,
+                images: updatedImages
+            }));
+        });
+    };
 
 
       const handleSubmit = (e) => {
