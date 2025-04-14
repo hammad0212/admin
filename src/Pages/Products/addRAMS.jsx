@@ -8,7 +8,7 @@ import { MyContext } from '../../App';
 import { fetchDataFromApi, postData, deleteData, editData } from '../../utils/api';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const addRAMS = () => {
+const AddRAMS = () => {
 
     const [name, setName] = useState();
     const [data, setData] = useState([]);
@@ -193,4 +193,4 @@ const addRAMS = () => {
     )
 }
 
-export default addRAMS;
+export default AddRAMS;
